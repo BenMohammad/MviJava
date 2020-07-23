@@ -56,7 +56,8 @@ public final class Task {
         }
     }
 
-    @Nullable String getDescription() {
+    @Nullable
+    public String getDescription() {
         return mDescription;
     }
 
