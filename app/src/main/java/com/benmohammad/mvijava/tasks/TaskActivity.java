@@ -1,8 +1,10 @@
-package com.benmohammad.mvijava;
+package com.benmohammad.mvijava.tasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.benmohammad.mvijava.R;
 
 public class TaskActivity extends AppCompatActivity {
 
