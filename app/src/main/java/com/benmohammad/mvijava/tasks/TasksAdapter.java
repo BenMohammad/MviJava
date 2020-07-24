@@ -28,7 +28,7 @@ public class TasksAdapter extends BaseAdapter {
         setList(tasks);
     }
 
-    private void replaceData(List<Task> tasks) {
+    public void replaceData(List<Task> tasks) {
         setList(tasks);
         notifyDataSetChanged();
     }
