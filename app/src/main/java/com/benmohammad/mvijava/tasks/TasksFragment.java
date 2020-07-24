@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,8 +21,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleRegistry;
-import androidx.lifecycle.LifecycleRegistryOwner;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.benmohammad.mvijava.R;
@@ -145,6 +146,11 @@ public class TasksFragment extends Fragment implements MviView<TasksIntent, Task
     }
 
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.tasks_fragment_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 
     @Override
     public void render(TasksViewState state) {
@@ -207,6 +213,22 @@ public class TasksFragment extends Fragment implements MviView<TasksIntent, Task
             return true;
         });
         popupMenu.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_clear:
+                clearCompletedTaskIntentPublishSubject.onNext(TasksIntent.ClearCompletedTaskIntent.create());
+                break;
+            case R.id.menu_filter:
+                showFilteringPopupMenu();
+                break;
+            case R.id.menu_refresh:
+                refreshTaskIntentPublisher.onNext(TasksIntent.RefreshIntent.create(true));
+                break;
+        }
+        return true;
     }
 
     private Observable<TasksIntent.InitialIntent> initialIntent() {

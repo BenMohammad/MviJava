@@ -36,7 +36,7 @@ public class TasksViewModel extends ViewModel implements MviViewModel<TasksInten
     private TasksActionProcessorHolder actionProcessorHolder;
 
     public TasksViewModel(@Nonnull TasksActionProcessorHolder tasksActionProcessorHolder) {
-        this.actionProcessorHolder = checkNotNull(actionProcessorHolder, "actionProcessHolder cannot ne null");
+        this.actionProcessorHolder = checkNotNull(tasksActionProcessorHolder, "actionProcessHolder cannot ne null");
         intentsSubject = PublishSubject.create();
         statesObservable = compose();
     }
