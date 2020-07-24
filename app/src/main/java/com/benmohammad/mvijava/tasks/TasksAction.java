@@ -15,7 +15,7 @@ public interface TasksAction extends MviAction {
         @Nullable
         public abstract TasksFilterType filterType();
 
-        public static LoadTasks loadFilter(boolean forceUpdate, TasksFilterType filterType) {
+        public static LoadTasks loadAndFilter(boolean forceUpdate, TasksFilterType filterType) {
             return new AutoValue_TasksAction_LoadTasks(forceUpdate, filterType);
         }
 
