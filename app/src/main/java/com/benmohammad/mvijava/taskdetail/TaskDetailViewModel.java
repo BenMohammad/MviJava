@@ -71,7 +71,7 @@ public class TaskDetailViewModel extends ViewModel implements MviViewModel<TaskD
         if(intent instanceof TaskDetailIntent.InitialIntent) {
             String taskId = ((TaskDetailIntent.InitialIntent) intent).taskId();
             checkNotNull(taskId);
-            return TaskDetailAction.DeleteTask.create(taskId);
+            return TaskDetailAction.PopulateTask.create(taskId);
         }
 
         if(intent instanceof TaskDetailIntent.DeleteTask) {
