@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.benmohammad.mvijava.injection.Injection;
+import com.benmohammad.mvijava.taskdetail.TaskDetailActionProcessorHolder;
+import com.benmohammad.mvijava.taskdetail.TaskDetailViewModel;
 import com.benmohammad.mvijava.tasks.TasksActionProcessorHolder;
 import com.benmohammad.mvijava.tasks.TasksViewModel;
 
@@ -29,6 +31,8 @@ public class TodoViewModelFactory implements ViewModelProvider.Factory {
         return INSTANCE;
     }
 
+
+
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
@@ -38,6 +42,11 @@ public class TodoViewModelFactory implements ViewModelProvider.Factory {
                             Injection.provideTasksRepository(context),
                             Injection.provideSchedulerProvider()));
 
+        } else if(modelClass == TaskDetailViewModel.class) {
+            return (T) new TaskDetailViewModel(
+                    new TaskDetailActionProcessorHolder(
+                            Injection.provideTasksRepository(context),
+                            Injection.provideSchedulerProvider()));
         }
         throw new IllegalArgumentException("Unknown model class: " + modelClass);
     }
