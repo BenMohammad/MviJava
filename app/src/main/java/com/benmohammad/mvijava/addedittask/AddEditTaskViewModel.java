@@ -130,6 +130,6 @@ public class AddEditTaskViewModel extends ViewModel implements MviViewModel<AddE
         if (result instanceof AddEditTaskResult.UpdateTask) {
             return stateBuilder.isSaved(true).build();
         }
-        throw new IllegalArgumentException("Mishandled result ! should not happen: " + result);
+        throw new IllegalStateException("Mishandled result ! should not happen: " + result);
     };
 }
