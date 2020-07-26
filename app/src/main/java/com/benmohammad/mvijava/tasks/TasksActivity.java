@@ -72,6 +72,8 @@ public class TasksActivity extends AppCompatActivity {
                 default:
                     break;
             }
+            menuItem.setChecked(true);
+            drawerLayout.closeDrawers();
             return true;
         });
     }
