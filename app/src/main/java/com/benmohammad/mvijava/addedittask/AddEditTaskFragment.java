@@ -33,7 +33,7 @@ public class AddEditTaskFragment extends Fragment implements MviView<AddEditTask
     private AddEditTaskViewModel viewModel;
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    public AddEditTaskFragment newInstance() {
+    public static AddEditTaskFragment newInstance() {
         return new AddEditTaskFragment();
     }
 

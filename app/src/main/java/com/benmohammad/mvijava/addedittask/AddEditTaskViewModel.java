@@ -51,6 +51,7 @@ public class AddEditTaskViewModel extends ViewModel implements MviViewModel<AddE
         return intentsSubject
                 .compose(intentFilter)
                 .map(this::actionFromIntent)
+                .filter(action -> !(action instanceof AddEditTaskAction.SkipMe))
                 .compose(actionProcessorHolder.actionProcessor)
                 .scan(AddEditTaskViewState.idle(), reducer)
                 .distinctUntilChanged()
