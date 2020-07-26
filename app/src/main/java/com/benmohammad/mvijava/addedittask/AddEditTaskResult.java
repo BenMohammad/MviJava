@@ -25,6 +25,7 @@ public interface AddEditTaskResult extends MviResult {
         @Nullable
         abstract Throwable error();
 
+        @NonNull
         public static PopulateTask success(@NonNull Task task) {
             return new AutoValue_AddEditTaskResult_PopulateTask(SUCCESS, task, null);
         }
@@ -35,7 +36,8 @@ public interface AddEditTaskResult extends MviResult {
             return new AutoValue_AddEditTaskResult_PopulateTask(FAILURE, null, error);
         }
 
-        @NonNull PopulateTask inFlight() {
+        @NonNull
+        static PopulateTask inFlight() {
             return new AutoValue_AddEditTaskResult_PopulateTask(IN_FLIGHT, null, null);
         }
     }
@@ -48,7 +50,7 @@ public interface AddEditTaskResult extends MviResult {
             return new AutoValue_AddEditTaskResult_CreateTask(false);
         }
 
-        static CreateTask failure() {
+        static CreateTask empty() {
             return new AutoValue_AddEditTaskResult_CreateTask(true);
         }
     }
@@ -58,5 +60,6 @@ public interface AddEditTaskResult extends MviResult {
         static UpdateTask create() {
             return new AutoValue_AddEditTaskResult_UpdateTask();
 
-        }    }
+        }
+    }
 }
