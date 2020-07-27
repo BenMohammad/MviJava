@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.benmohammad.mvijava.addedittask.AddEditTaskActionProcessorHolder;
 import com.benmohammad.mvijava.addedittask.AddEditTaskViewModel;
 import com.benmohammad.mvijava.injection.Injection;
+import com.benmohammad.mvijava.stats.StatisticsActionProcessorHolder;
+import com.benmohammad.mvijava.stats.StatisticsViewModel;
 import com.benmohammad.mvijava.taskdetail.TaskDetailActionProcessorHolder;
 import com.benmohammad.mvijava.taskdetail.TaskDetailViewModel;
 import com.benmohammad.mvijava.tasks.TasksActionProcessorHolder;
@@ -44,14 +46,22 @@ public class TodoViewModelFactory implements ViewModelProvider.Factory {
                             Injection.provideTasksRepository(context),
                             Injection.provideSchedulerProvider()));
 
-        } else if(modelClass == TaskDetailViewModel.class) {
+        }
+        if(modelClass == TaskDetailViewModel.class) {
             return (T) new TaskDetailViewModel(
                     new TaskDetailActionProcessorHolder(
                             Injection.provideTasksRepository(context),
                             Injection.provideSchedulerProvider()));
-        } else if(modelClass == AddEditTaskViewModel.class) {
+        }
+        if(modelClass == AddEditTaskViewModel.class) {
             return (T) new AddEditTaskViewModel(
                     new AddEditTaskActionProcessorHolder(
+                            Injection.provideTasksRepository(context),
+                            Injection.provideSchedulerProvider()));
+        }
+        if(modelClass == StatisticsViewModel.class) {
+            return (T)  new StatisticsViewModel(
+                    new StatisticsActionProcessorHolder(
                             Injection.provideTasksRepository(context),
                             Injection.provideSchedulerProvider()));
         }
